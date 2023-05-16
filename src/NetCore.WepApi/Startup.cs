@@ -36,7 +36,8 @@ namespace NetCore.WepApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            // Disable Https
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
 
