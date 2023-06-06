@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NetCore.Application.Courses;
 using NetCore.Persistence;
 using System;
 using System.Collections.Generic;
@@ -31,6 +33,8 @@ namespace NetCore.WepApi
             {
                 option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddMediatR(typeof(Query.Handler).Assembly);
 
             services.AddControllers();
         }
