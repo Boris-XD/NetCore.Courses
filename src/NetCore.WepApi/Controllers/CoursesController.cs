@@ -24,8 +24,16 @@ namespace NetCore.WepApi.Controllers
             return await _mediator.Send(new Query.Command());
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Course>> GetCourseById(int id)
+        {
+            return await _mediator.Send(new CourseId.Command{ Id = id });
+        }
 
-
-
+        [HttpPost]
+        public async Task<ActionResult<Course>> SaveCourse([FromBody] AddCourse.Command course)
+        {
+            return await _mediator.Send(course);
+        }
     }
 }
