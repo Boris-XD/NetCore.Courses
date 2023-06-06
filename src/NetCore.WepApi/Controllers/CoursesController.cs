@@ -35,5 +35,18 @@ namespace NetCore.WepApi.Controllers
         {
             return await _mediator.Send(course);
         }
+
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<Unit>> EditCourse(int id, [FromBody] EditCourse.Command course)
+        {
+            course.Id = id;
+            return await _mediator.Send(course);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Unit>> DeleteCourse(int id)
+        {
+            return await _mediator.Send(new Remove.Command { Id = id });
+        }
     }
 }
